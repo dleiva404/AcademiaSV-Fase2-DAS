@@ -1,0 +1,65 @@
+@model AcademiaSV.Models.Maestro
+
+@{
+    ViewData["Title"] = "Editar Maestro";
+}
+
+<h2>Editar Maestro</h2>
+
+<form asp-controller="Maestros" asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="id_maestro" />
+    <input type="hidden" asp-for="fecha_creacion" />
+
+    <div class="mb-3">
+        <label asp-for="nombre" class="form-label">Nombre</label>
+        <input asp-for="nombre" class="form-control" />
+        <span asp-validation-for="nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="apellido" class="form-label">Apellido</label>
+        <input asp-for="apellido" class="form-control" />
+        <span asp-validation-for="apellido" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="dui" class="form-label">DUI</label>
+        <input asp-for="dui" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="especialidad" class="form-label">Especialidad</label>
+        <input asp-for="especialidad" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="titulo" class="form-label">Título</label>
+        <input asp-for="titulo" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="telefono" class="form-label">Teléfono</label>
+        <input asp-for="telefono" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="correo" class="form-label">Correo</label>
+        <input asp-for="correo" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="estado" class="form-label">Estado</label>
+        <select asp-for="estado" class="form-control">
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Actualizar</button>
+    <a asp-controller="Maestros" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

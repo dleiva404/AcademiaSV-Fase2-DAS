@@ -1,0 +1,69 @@
+@model AcademiaSV.Models.Seccion
+
+@{
+    ViewData["Title"] = "Nueva Sección";
+}
+
+<h2>Nueva Sección</h2>
+
+<form asp-controller="Secciones" asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label asp-for="id_materia" class="form-label">Materia</label>
+        <select asp-for="id_materia" class="form-control" asp-items="ViewBag.Materias">
+            <option value="">-- Seleccione una materia --</option>
+        </select>
+        <span asp-validation-for="id_materia" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="id_maestro" class="form-label">Maestro</label>
+        <select asp-for="id_maestro" class="form-control" asp-items="ViewBag.Maestros">
+            <option value="">-- Seleccione un maestro --</option>
+        </select>
+        <span asp-validation-for="id_maestro" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="id_ciclo" class="form-label">Ciclo</label>
+        <select asp-for="id_ciclo" class="form-control" asp-items="ViewBag.Ciclos">
+            <option value="">-- Seleccione un ciclo --</option>
+        </select>
+        <span asp-validation-for="id_ciclo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="codigo_seccion" class="form-label">Código de Sección</label>
+        <input asp-for="codigo_seccion" class="form-control" placeholder="Ej: A01" />
+        <span asp-validation-for="codigo_seccion" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="cupo_maximo" class="form-label">Cupo Máximo</label>
+        <input asp-for="cupo_maximo" type="number" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="horario_dia" class="form-label">Día(s)</label>
+        <input asp-for="horario_dia" class="form-control" placeholder="Ej: Lunes y Miércoles" />
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="hora_inicio" class="form-label">Hora Inicio</label>
+            <input asp-for="hora_inicio" type="time" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="hora_fin" class="form-label">Hora Fin</label>
+            <input asp-for="hora_fin" type="time" class="form-control" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-controller="Secciones" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,42 @@
+@model IEnumerable<AcademiaSV.Models.Inscripcion>
+
+@{
+    ViewData["Title"] = "Inscripciones";
+}
+
+<h2>📝 Gestión de Inscripciones</h2>
+<p>
+    <a asp-controller="Inscripciones" asp-action="Create" class="btn btn-success">➕ Nueva Inscripción</a>
+</p>
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Alumno</th>
+            <th>Sección</th>
+            <th>Materia</th>
+            <th>Fecha Inscripción</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Alumno?.nombre @item.Alumno?.apellido</td>
+                <td>@item.Seccion?.codigo_seccion</td>
+                <td>@item.Seccion?.Materia?.nombre</td>
+                <td>@item.fecha_inscripcion.ToString("dd/MM/yyyy")</td>
+                <td>@item.estado</td>
+                <td>
+                    <form asp-controller="Inscripciones" asp-action="Delete" asp-route-id="@item.id_inscripcion" method="post" style="display:inline"
+                          onsubmit="return confirm('¿Eliminar esta inscripción?')">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-sm">🗑️ Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

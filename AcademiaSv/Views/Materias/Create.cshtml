@@ -1,0 +1,53 @@
+@model AcademiaSV.Models.Materia
+
+@{
+    ViewData["Title"] = "Nueva Materia";
+}
+
+<h2>Nueva Materia</h2>
+
+<form asp-controller="Materias" asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label asp-for="id_carrera" class="form-label">Carrera</label>
+        <select asp-for="id_carrera" class="form-control" asp-items="ViewBag.Carreras">
+            <option value="">-- Seleccione una carrera --</option>
+        </select>
+        <span asp-validation-for="id_carrera" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="codigo" class="form-label">Código</label>
+        <input asp-for="codigo" class="form-control" />
+        <span asp-validation-for="codigo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="nombre" class="form-label">Nombre</label>
+        <input asp-for="nombre" class="form-control" />
+        <span asp-validation-for="nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="descripcion" class="form-label">Descripción</label>
+        <textarea asp-for="descripcion" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="unidades_valorativas" class="form-label">Unidades Valorativas</label>
+        <input asp-for="unidades_valorativas" type="number" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="anio_plan" class="form-label">Año Plan</label>
+        <input asp-for="anio_plan" type="number" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-controller="Materias" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

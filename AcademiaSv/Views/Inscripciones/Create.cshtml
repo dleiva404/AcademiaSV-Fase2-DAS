@@ -1,0 +1,34 @@
+@model AcademiaSV.Models.Inscripcion
+
+@{
+    ViewData["Title"] = "Nueva Inscripción";
+}
+
+<h2>Nueva Inscripción</h2>
+
+<form asp-controller="Inscripciones" asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label asp-for="id_alumno" class="form-label">Alumno</label>
+        <select asp-for="id_alumno" class="form-control" asp-items="ViewBag.Alumnos">
+            <option value="">-- Seleccione un alumno --</option>
+        </select>
+        <span asp-validation-for="id_alumno" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="id_seccion" class="form-label">Sección</label>
+        <select asp-for="id_seccion" class="form-control" asp-items="ViewBag.Secciones">
+            <option value="">-- Seleccione una sección --</option>
+        </select>
+        <span asp-validation-for="id_seccion" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-controller="Inscripciones" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

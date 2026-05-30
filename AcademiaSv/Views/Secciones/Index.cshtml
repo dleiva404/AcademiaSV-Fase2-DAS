@@ -1,0 +1,47 @@
+@model IEnumerable<AcademiaSV.Models.Seccion>
+
+@{
+    ViewData["Title"] = "Secciones";
+}
+
+<h2>Listado de Secciones</h2>
+<p>
+    <a asp-controller="Secciones" asp-action="Create" class="btn btn-primary">Nueva Sección</a>
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Código</th>
+            <th>Materia</th>
+            <th>Maestro</th>
+            <th>Ciclo</th>
+            <th>Horario</th>
+            <th>Cupo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var seccion in Model)
+        {
+            <tr>
+                <td>@seccion.codigo_seccion</td>
+                <td>@seccion.Materia?.nombre</td>
+                <td>@seccion.Maestro?.nombre @seccion.Maestro?.apellido</td>
+                <td>@seccion.Ciclo?.anio - @seccion.Ciclo?.numero_ciclo</td>
+                <td>@seccion.horario_dia @seccion.hora_inicio?.ToString(@"hh\:mm") - @seccion.hora_fin?.ToString(@"hh\:mm")</td>
+                <td>@seccion.cupo_maximo</td>
+                <td>@seccion.estado</td>
+                <td>
+                    <a asp-controller="Secciones" asp-action="Edit" asp-route-id="@seccion.id_seccion" class="btn btn-warning btn-sm">Editar</a>
+                    <form asp-controller="Secciones" asp-action="Delete" asp-route-id="@seccion.id_seccion" method="post" style="display:inline"
+                          onsubmit="return confirm('¿Eliminar esta sección?')">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+@model IEnumerable<AcademiaSV.Models.Materia>
+
+@{
+    ViewData["Title"] = "Materias";
+}
+
+<h2>Listado de Materias</h2>
+<p>
+    <a asp-controller="Materias" asp-action="Create" class="btn btn-primary">Nueva Materia</a>
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Carrera</th>
+            <th>UV</th>
+            <th>Año Plan</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var materia in Model)
+        {
+            <tr>
+                <td>@materia.codigo</td>
+                <td>@materia.nombre</td>
+                <td>@materia.Carrera?.nombre</td>
+                <td>@materia.unidades_valorativas</td>
+                <td>@materia.anio_plan</td>
+                <td>@materia.estado</td>
+                <td>
+                    <a asp-controller="Materias" asp-action="Edit" asp-route-id="@materia.id_materia" class="btn btn-warning btn-sm">Editar</a>
+                    <form asp-controller="Materias" asp-action="Delete" asp-route-id="@materia.id_materia" method="post" style="display:inline"
+                          onsubmit="return confirm('¿Eliminar esta materia?')">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

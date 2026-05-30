@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Reportes";
+}
+
+<h1 class="display-4">📊 Reportes del Sistema</h1>
+<p class="lead">Resumen general de la información académica.</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white mb-3">
+            <div class="card-body">
+                <h4>Alumnos</h4>
+                <h2>@ViewBag.TotalAlumnos</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-success text-white mb-3">
+            <div class="card-body">
+                <h4>Maestros</h4>
+                <h2>@ViewBag.TotalMaestros</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-warning text-dark mb-3">
+            <div class="card-body">
+                <h4>Materias</h4>
+                <h2>@ViewBag.TotalMaterias</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-info text-white mb-3">
+            <div class="card-body">
+                <h4>Secciones</h4>
+                <h2>@ViewBag.TotalSecciones</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-danger text-white mb-3">
+            <div class="card-body">
+                <h4>Inscripciones</h4>
+                <h2>@ViewBag.TotalInscripciones</h2>
+            </div>
+        </div>
+    </div>
+</div>
